@@ -373,6 +373,8 @@ if analyze_clicked:
         r_col1.metric("Flesch Reading Ease Score", readability["flesch_score"])
         r_col2.metric("Approx. Grade Level", readability["grade_level"])
         st.caption(readability["verdict"])
+    else:
+        st.caption(readability.get("verdict", "Readability check unavailable."))
     st.markdown('</div>', unsafe_allow_html=True)
 
 else:

@@ -3,13 +3,26 @@ readability_checker.py
 Bonus feature: resume readability scoring using textstat.
 Purely offline — no API or Java dependency (unlike grammar-check libraries
 such as language_tool_python, which need a Java runtime + downloads).
+
+The textstat import is wrapped in a try/except because some cloud hosting
+environments (e.g. Streamlit Community Cloud's uv-based installer) don't
+reliably provide 'pkg_resources', a dependency textstat needs internally.
+If that happens, this feature is skipped gracefully instead of crashing
+the whole app.
 """
 
-import textstat
+try:
+    import textstat
+    _TEXTSTAT_AVAILABLE = True
+except Exception:
+    _TEXTSTAT_AVAILABLE = False
 
 
 def check_readability(resume_text):
     """Return readability metrics + a simple human-friendly verdict."""
+    if not _TEXTSTAT_AVAILABLE:
+        return {"verdict": "Readability check unavailable in this environment."}
+
     if not resume_text.strip():
         return {"score": 0, "verdict": "No text to analyze.", "details": {}}
 
