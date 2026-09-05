@@ -8,4 +8,5 @@ plotly==5.23.0
 textstat==0.7.4
 numpy==1.26.4
 fpdf2==2.7.9
-https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whlgit 
+en_core
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl
